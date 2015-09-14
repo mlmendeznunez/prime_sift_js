@@ -1,44 +1,50 @@
-// Main encrypter method
-var encrypt = function(phrase) {
-  var strippedPhrase = punctuationLess(phrase);
-  var phraseLength = strippedPhrase.length;
-  var width = Math.ceil(Math.sqrt(phraseLength));
-  var encryptedString = "";
+// Main prime sift function
+var primeSift = function(n) {
+  var array = makeList(n);
+  var primeIndex = 0;
 
-  for (var i = 0; i < width; i++) {
-    for (var j = i; j < phraseLength; j += width) {
-      encryptedString += strippedPhrase[j];
-    }
+  while (!(array[primeIndex] === array[array.length - 1])) {
+    sieve(primeIndex, array);
+    primeIndex++;
   }
-  return insertSpaces(5, encryptedString);
+  return array;
 };
 
-// Helper method: strip all whitespace and punctuation, and make everything lowercase
-var punctuationLess = function(phrase) {
-  var strippedPhrase = phrase.replace(/[^A-Za-z0-9-]/g,"").toLowerCase();
-  return strippedPhrase;
+
+// Helper function: generate a list of numbers from 2 to n
+var makeList = function(n) {
+  var array = [];
+  for (var i = 0; i <= n; i++) {
+    array[i] = i;
+  }
+  // Delete 0 and 1 from our array
+  array.splice(0, 2);
+
+  return array;
 };
 
-// Insert a space every n characters
-var insertSpaces = function(n, phrase) {
-  var finalPhrase = "";
-  for (var i = 0; i < phrase.length; i++) {
-    finalPhrase += phrase[i];
-    if ((i + 1) % n == 0) {
-      finalPhrase += " ";
+// Helper method: create a sieve to delete all multiples of a number
+var sieve = function(primeIndex, array) {
+  var prime = array[primeIndex];
+
+  // primeIndex + 1 b/c do not want to delete prime currently used
+  for(var i = (primeIndex + 1); i < array.length; i++) {
+    if (array[i] % prime === 0) {
+      array.splice(i, 1);
     }
   }
-  return finalPhrase;
-}
+  return array;
+};
+
 
 $(document).ready(function() {
-  $("form#cryptosquare").submit(function(event) {
-    var initialPhrase = $("input#initialPhrase").val();
-    var encryptedPhrase = encrypt(initialPhrase);
+  $("form#primeSifter").submit(function(event) {
+    var number = parseInt($("input#number").val());
+    var primes = primeSift(number);
 
     // Populate data
-    $(".initialPhrase").text(initialPhrase);
-    $(".encryptedPhrase").text(encryptedPhrase);
+    $(".number").text(number);
+    $(".primes").text(primes);
 
     $("#result").show();
     event.preventDefault();

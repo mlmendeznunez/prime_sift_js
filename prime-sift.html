@@ -5,36 +5,30 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Cryptosquare</title>
+    <title>Prime Sifter</title>
   </head>
   <body>
     <div class="container">
-      <h1>Encrypts your phrase.</h1>
+      <h1>Prime Sifter</h1>
 
-      <form id="cryptosquare">
+      <form id="primeSifter">
         <div class="form-group">
-          <label for="initialPhrase">Enter your message:</label>
-          <input id="initialPhrase" type="text" class="form-control" placeholder="Hello World!">
+          <label for="number">Enter a number and we'll show you all the primes up to (and maybe including) that number!</label>
+          <input id="number" type="text" class="form-control" placeholder="Ex. 10">
         </div>
 
-        <button type="submit" class="btn">Encrypt me!</button>
+        <button type="submit" class="btn">Calculate!</button>
       </form>
 
       <hr>
 
       <div id="result">
 
-        <h3>Original phrase:</h3>
+        <h3>All primes for <span class="number"></span>:</h3>
         <div class="well">
-          <span class="initialPhrase"></span>
-          <br/>
+          <span class="primes"></span>
         </div>
 
-        <h3>Becomes:</h3>
-        <div class="well">
-          <span class="encryptedPhrase"></span>
-        </div>
-        
       </div>
     </div>
   </body>

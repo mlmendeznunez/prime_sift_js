@@ -1,17 +1,22 @@
-describe("punctuationLess", function() {
-  it("returns phrase stripped of whitespace and punctuation", function() {
-    expect(punctuationLess("Javasrcipt & JQUERY are fun!")).to.equal("javasrciptjqueryarefun");
+describe("makeList", function() {
+  it("returns a list of numbers from 2 to 10", function() {
+    var array = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    expect(makeList(10)).to.eql(array);
   });
 });
 
-describe("insertSpaces", function() { //mocha is our Javascript test framework
-  it("returns phrase with spaces inserted at every n chars", function() {
-    expect(insertSpaces(2, "himom")).to.equal("hi mo m"); //chai uses expect and .equal
+describe("sieve", function() {
+  it("returns a list of numbers from 2 to 10", function() {
+    var array = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    var sievedArray = [2, 3, 5, 7, 9];
+    expect(sieve(0, array)).to.eql(sievedArray);
   });
 });
 
-describe("encrypt", function() {
-  it("returns encrypted phrase with correct spacing", function() {
-    expect(encrypt("Hello World!")).to.equal("holew dlolr ");
+describe("primeSift", function() {
+  it("returns all of the prime numbers less than a number", function(){
+    var array = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+    var resultArray = [2, 3, 5, 7];
+    expect(primeSift(10)).to.eql(resultArray);
   });
 });
